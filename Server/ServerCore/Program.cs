@@ -4,17 +4,22 @@ namespace ServerCore;
 
 class Program
 {
-    static void MainThread()
+    static void TestThread()
     {
         while(true)
-            Console.WriteLine("Main Thread Run!!!");
+            Console.WriteLine("Test Thread Run!!!");
     }
     static void Main(String[] args)
     {
-        Thread t = new Thread(MainThread);
+        Thread t = new Thread(TestThread);
+        t.Name = "Test Thread";
         t.IsBackground = true;
+
         t.Start();
 
-        Console.WriteLine("Hello World");
+        Console.WriteLine("waiting for thread");
+        t.Join();
+
+        Console.WriteLine("exit app");
     }
 }
