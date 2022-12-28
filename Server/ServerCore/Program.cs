@@ -6,15 +6,15 @@ class Program
 {
     static void MainThread()
     {
-        Console.WriteLine("Main Thread Run!!!");
+        while(true)
+            Console.WriteLine("Main Thread Run!!!");
     }
     static void Main(String[] args)
     {
         Thread t = new Thread(MainThread);
-
+        t.IsBackground = true;
         t.Start();
 
         Console.WriteLine("Hello World");
-
     }
 }
