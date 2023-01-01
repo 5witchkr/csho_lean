@@ -16,5 +16,9 @@
 
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore.InMemory" />
+    <None Remove="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>
