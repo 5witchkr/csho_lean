@@ -4,22 +4,26 @@ namespace ServerCore;
 
 class Program
 {
-    static void TestThread()
+    static void TestThread(object state)
     {
-        while(true)
+        for (int i = 0; i < 5; i++) {
             Console.WriteLine("Test Thread Run!!!");
+        }
     }
     static void Main(String[] args)
     {
-        Thread t = new Thread(TestThread);
-        t.Name = "Test Thread";
-        t.IsBackground = true;
+        ThreadPool.QueueUserWorkItem(TestThread);
 
-        t.Start();
+        while (true) { }
+        //Thread t = new Thread(TestThread);
+        //t.Name = "Test Thread";
+        //t.IsBackground = true;
 
-        Console.WriteLine("waiting for thread");
-        t.Join();
+        //t.Start();
 
-        Console.WriteLine("exit app");
+        //Console.WriteLine("waiting for thread");
+        //t.Join();
+
+        //Console.WriteLine("exit app");
     }
 }
