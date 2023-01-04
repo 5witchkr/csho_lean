@@ -1,29 +1,38 @@
 ﻿using System;
 using System.Threading;
-namespace ServerCore;
-
-class Program
+namespace ServerCore
 {
-    static void TestThread(object state)
+
+    class Program
     {
-        for (int i = 0; i < 5; i++) {
-            Console.WriteLine("Test Thread Run!!!");
+        static bool _stop = false;
+
+        static void ThreadMain()
+        {
+            Console.WriteLine("Start thread");
+
+            while (_stop == false)
+            {
+                //wait
+            }
+
+            Console.WriteLine("Stop thread");
         }
-    }
-    static void Main(String[] args)
-    {
-        ThreadPool.QueueUserWorkItem(TestThread);
 
-        while (true) { }
-        //Thread t = new Thread(TestThread);
-        //t.Name = "Test Thread";
-        //t.IsBackground = true;
+        static void Main(String[] args)
+        {
+            Task t = new Task(ThreadMain);
+            t.Start();
 
-        //t.Start();
+            Thread.Sleep(1000);
 
-        //Console.WriteLine("waiting for thread");
-        //t.Join();
+            _stop = true;
 
-        //Console.WriteLine("exit app");
+            Console.WriteLine("call Stop");
+            Console.WriteLine("wait Stop");
+
+            t.Wait();
+            Console.WriteLine("done Stop");
+        }
     }
 }
